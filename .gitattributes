@@ -1,0 +1,2 @@
+*.properties text eol=lf
+build.gradle text eol=lf

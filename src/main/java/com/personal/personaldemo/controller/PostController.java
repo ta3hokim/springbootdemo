@@ -35,17 +35,21 @@ public class PostController {
     */
 
     @GetMapping("/list")
-    public List<Post> postList(){
-        return postService.postList();
+    public List<Post> postList(@RequestParam String title){
+        if (title != null) {
+            return postService.findPostList(title);
+        } else {
+            return postService.postList();
+        }
     }
     //Post의 리스트형식으로 리턴하는데 이게 Json형태로 데이터를 전송한다.
     //형태가 제이슨
 
     //@PathVariable 사용하기, 변수명 이름 통일시키기
     @GetMapping("/{postId}")
-    public Post postList(@PathVariable String postId){
+    public Post aPost(@PathVariable String postId){
 
-        return new Post(UUID.randomUUID(), "title1", "content1", "", LocalDateTime.now());
+        return new Post(UUID.randomUUID(), "title100", "content100", "", LocalDateTime.now());
     }
     
     // 글 쓰기 버튼 누르면 글쓰기페이지로 전이
@@ -61,7 +65,7 @@ public class PostController {
     /*
     //쿼리, get은 바디사용못함 그래서 쿼리가 대체 하지만 유저한테보임
     @GetMapping("/update")
-    public String postUpdate(@RequestParm String PostId){
+    public String postUpdate(@RequestParam String PostId){
 
         return postId + "번 수정테스트";
     }
