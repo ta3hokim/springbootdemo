@@ -9,8 +9,13 @@ services:
     depends_on:
       - mariadb
       - postgres
-      - h2
 
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/mydatabase
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+    
+   
   mariadb:
     image: mariadb:latest
     environment:
@@ -30,9 +35,3 @@ services:
     ports:
       - "5432:5432"
 
-  h2:
-    image: oscarfonts/h2:latest
-    environment:
-      H2_OPTIONS: '-tcp -tcpAllowOthers -ifNotExists'
-    ports:
-      - "1521:1521"

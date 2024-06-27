@@ -24,7 +24,6 @@ public class PostService {
 
     public List<Post> postList(){
         return postRepository.findAll();
-        //return postMapper.listPost(); mybatis사용방식
     }
 
     /* mybatis사용방식
